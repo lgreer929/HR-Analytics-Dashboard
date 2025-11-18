@@ -15,9 +15,9 @@ st.set_page_config(
 # ------------------------------------------------------
 @st.cache_data
 def load_data():
-    df = pd.read_csv(r"C:\Users\lisag\Desktop\hr_cleaned.csv", parse_dates=[
-        "DateofHire", "DateofTermination", "DOB", "LastPerformanceReview_Date"
-    ])
+    df = pd.read_csv("hr_cleaned.csv", parse_dates=[
+    "DateofHire", "DateofTermination", "DOB", "LastPerformanceReview_Date"
+])
     return df
 
 df = load_data()
