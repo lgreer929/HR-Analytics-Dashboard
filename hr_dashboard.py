@@ -114,7 +114,7 @@ with colA:
         filtered,
         names = "Race/Descent",
         title="Race Distribution",
-        color_discrete_sequence=px.colors.qualitative.Vivid
+        color_discrete_sequence=px.colors.qualitative.Bold
     )
     st.plotly_chart(fig_race, use_container_width=True)
 
@@ -127,7 +127,7 @@ with colB:
         color="Sex",
         color_discrete_map={
             "Male": "#1f77b4",
-            "Female": "#9467bd"
+            "Female": "#4b1f62"
         }
     )
     st.plotly_chart(fig_gender, use_container_width=True)
