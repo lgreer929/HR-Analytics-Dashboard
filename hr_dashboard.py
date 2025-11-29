@@ -114,7 +114,7 @@ with colA:
         filtered,
         names = "Race/Descent",
         title="Race Distribution",
-        color_discrete_sequence=px.colors.qualitative.Bold
+        color_discrete_sequence=px.colors.qualitative.Set3
     )
     st.plotly_chart(fig_race, use_container_width=True)
 
