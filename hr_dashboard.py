@@ -108,12 +108,28 @@ st.markdown("### 👥 Employee Demographics")
 
 colA, colB = st.columns(2)
 
+# Pie Chart: Strong color palette
 with colA:
-    fig_race = px.pie(filtered, names="RaceDesc", title="Race Distribution")
+    fig_race = px.pie(
+        filtered,
+        names="RaceDesc",
+        title="Race Distribution",
+        color_discrete_sequence=px.colors.qualitative.Bold
+    )
     st.plotly_chart(fig_race, use_container_width=True)
 
+# Histogram: Dark blue for men, dark purple for women
 with colB:
-    fig_gender = px.histogram(filtered, x="Sex", title="Gender Distribution")
+    fig_gender = px.histogram(
+        filtered,
+        x="Sex",
+        title="Gender Distribution",
+        color="Sex",
+        color_discrete_map={
+            "Male": "#1f3b73",
+            "Female": "#4b1f62"
+        }
+    )
     st.plotly_chart(fig_gender, use_container_width=True)
 
 # ------------------------------------------------------
