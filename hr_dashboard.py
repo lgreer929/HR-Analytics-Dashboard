@@ -23,6 +23,30 @@ def load_data():
 df = load_data()
 
 # ------------------------------------------------------
+# CREATE REGION COLUMN
+# ------------------------------------------------------
+region_map = {
+    "WA": "West", "OR": "West", "CA": "West", "NV": "West", "AZ": "West",
+    "ID": "West", "MT": "West", "WY": "West", "CO": "West", "NM": "West",
+
+    "ND": "Midwest", "SD": "Midwest", "NE": "Midwest", "KS": "Midwest",
+    "MN": "Midwest", "IA": "Midwest", "MO": "Midwest", "WI": "Midwest",
+    "IL": "Midwest", "IN": "Midwest", "MI": "Midwest", "OH": "Midwest",
+
+    "TX": "South", "OK": "South", "AR": "South", "LA": "South",
+    "MS": "South", "AL": "South", "TN": "South", "KY": "South",
+    "GA": "South", "FL": "South", "SC": "South", "NC": "South",
+    "VA": "South", "WV": "South", "MD": "South", "DE": "South",
+
+    "PA": "Northeast", "NJ": "Northeast", "NY": "Northeast", "CT": "Northeast",
+    "RI": "Northeast", "MA": "Northeast", "VT": "Northeast", "NH": "Northeast",
+    "ME": "Northeast"
+}
+
+# Add region column
+df["Region"] = df["State"].map(region_map)
+
+# ------------------------------------------------------
 # PAGE CONFIG
 # ------------------------------------------------------
 
@@ -37,12 +61,12 @@ st.sidebar.header("Filters")
 departments = ["All"] + sorted(df["Department"].dropna().unique().tolist())
 positions = ["All"] + sorted(df["Position"].dropna().unique().tolist())
 managers = ["All"] + sorted(df["ManagerName"].dropna().unique().tolist())
-states = ["All"] + sorted(df["State"].dropna().unique().tolist())
+regions = ["All"] + sorted(df["Region"].dropna().unique().tolist())
 
 selected_dept = st.sidebar.selectbox("Department", departments)
 selected_pos = st.sidebar.selectbox("Position", positions)
 selected_mgr = st.sidebar.selectbox("Manager", managers)
-selected_state = st.sidebar.selectbox("State", states)
+selected_region = st.sidebar.selectbox("Region", regions)
 
 # Apply filters
 filtered = df.copy()
@@ -56,8 +80,8 @@ if selected_pos != "All":
 if selected_mgr != "All":
     filtered = filtered[filtered["ManagerName"] == selected_mgr]
 
-if selected_state != "All":
-    filtered = filtered[filtered["State"] == selected_state]
+if selected_region != "All":
+    filtered = filtered[filtered["Region"] == selected_region]
 
 # ------------------------------------------------------
 # KPI METRICS
